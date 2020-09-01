@@ -1,0 +1,76 @@
+
+A-3 Loops
+
+Code and Gimple Output:
+
+main ()
+{
+  int j;
+  int i;
+  int sum;
+  int D.1922;
+
+  <bb 2> :
+  sum = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  sum = sum * 2;
+
+  <bb 4> :
+  if (sum <= 99)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  i = 0;
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  j = 0;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  _1 = i * j;
+  sum = sum + _1;
+  j = j + 1;
+
+  <bb 8> :
+  if (j <= 49)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  i = i + 1;
+
+  <bb 10> :
+  if (i <= 24)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  D.1922 = 0;
+
+  <bb 12> :
+<L9>:
+  return D.1922;
+
+}
+
+Solutions:
+
+	1. BB 3 and 4 correspond to the while loop. BB2 avoids executing an iteration
+	   unconditionally by having an unconditional goto to BB4 which is the while
+	   loop conditional. This is different from the if-else jumps, which always seem
+	   to be conditional.
+
+	2. BB 5:  Outer loop induction variable initialisation
+	   BB 10: Outer loop conditional check
+	   BB 6:  Inner loop induction variable initialisation
+	   BB 8:  Inner loop conditional check
+	   BB 7:  Inner loop body + induction variable increment
+	   BB 9:  Outer loop induction variable increment
+
