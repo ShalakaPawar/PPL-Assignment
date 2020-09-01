@@ -1,0 +1,395 @@
+
+PPL Assignment 2
+
+Name: Shalaka Pawar
+MIS: 111903095
+Division: 2
+
+
+A-1]
+
+A-1.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 40             sub    $0x40,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 fc 06 00 00 00    movl   $0x6,-0x4(%rbp)
+  14:   c7 45 f8 0a 00 00 00    movl   $0xa,-0x8(%rbp)
+  1b:   c7 45 f4 14 00 00 00    movl   $0x14,-0xc(%rbp)
+  22:   8b 45 f8                mov    -0x8(%rbp),%eax
+  25:   0f af 45 f4             imul   -0xc(%rbp),%eax
+  29:   83 c0 19                add    $0x19,%eax
+  2c:   89 45 f0                mov    %eax,-0x10(%rbp)
+  2f:   c7 45 fc 06 00 00 00    movl   $0x6,-0x4(%rbp)
+  36:   48 8d 05 00 00 00 00    lea    0x0(%rip),%rax        # 3d <main+0x3d>
+                        39: R_X86_64_PC32       Z-0x4
+  3d:   8b 00                   mov    (%rax),%eax
+  3f:   89 45 ec                mov    %eax,-0x14(%rbp)
+  42:   90                      nop
+  43:   48 83 c4 40             add    $0x40,%rsp
+  47:   5d                      pop    %rbp
+  48:   c3                      retq
+  49:   90                      nop
+  4a:   90                      nop
+  4b:   90                      nop
+  4c:   90                      nop
+  4d:   90                      nop
+  4e:   90                      nop
+  4f:   90                      nop
+
+---------------------------------------------------------------------------------------------
+
+A-2]
+
+$ objdump -d -l -r A-2.o
+
+A-2.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <f>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 10             sub    $0x10,%rsp
+   8:   48 8d 05 00 00 00 00    lea    0x0(%rip),%rax        # f <f+0xf>
+                        b: R_X86_64_PC32        Z-0x4
+   f:   8b 00                   mov    (%rax),%eax
+  11:   89 45 f4                mov    %eax,-0xc(%rbp)
+  14:   83 7d f4 09             cmpl   $0x9,-0xc(%rbp)
+  18:   7f 10                   jg     2a <f+0x2a>
+  1a:   c7 45 fc 05 00 00 00    movl   $0x5,-0x4(%rbp)
+  21:   c7 45 f8 11 00 00 00    movl   $0x11,-0x8(%rbp)
+  28:   eb 1b                   jmp    45 <f+0x45>
+  2a:   c7 45 fc 06 00 00 00    movl   $0x6,-0x4(%rbp)
+  31:   c7 45 f8 14 00 00 00    movl   $0x14,-0x8(%rbp)
+  38:   83 7d f4 00             cmpl   $0x0,-0xc(%rbp)
+  3c:   75 07                   jne    45 <f+0x45>
+  3e:   c7 45 f8 00 00 00 00    movl   $0x0,-0x8(%rbp)
+  45:   8b 55 fc                mov    -0x4(%rbp),%edx
+  48:   89 d0                   mov    %edx,%eax
+  4a:   c1 e0 02                shl    $0x2,%eax
+  4d:   01 d0                   add    %edx,%eax
+  4f:   01 c0                   add    %eax,%eax
+  51:   89 c2                   mov    %eax,%edx
+  53:   8b 45 f8                mov    -0x8(%rbp),%eax
+  56:   01 c2                   add    %eax,%edx
+  58:   48 8d 05 00 00 00 00    lea    0x0(%rip),%rax        # 5f <f+0x5f>
+                        5b: R_X86_64_PC32       Z-0x4
+  5f:   89 10                   mov    %edx,(%rax)
+  61:   90                      nop
+  62:   48 83 c4 10             add    $0x10,%rsp
+  66:   5d                      pop    %rbp
+  67:   c3                      retq
+  68:   90                      nop
+  69:   90                      nop
+  6a:   90                      nop
+  6b:   90                      nop
+  6c:   90                      nop
+  6d:   90                      nop
+  6e:   90                      nop
+  6f:   90                      nop
+
+----------------------------------------------------------------------------------------------------
+
+A-3]
+
+A-3.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 fc 00 00 00 00    movl   $0x0,-0x4(%rbp)
+  14:   eb 03                   jmp    19 <main+0x19>
+  16:   d1 65 fc                shll   -0x4(%rbp)
+  19:   83 7d fc 63             cmpl   $0x63,-0x4(%rbp)
+  1d:   7e f7                   jle    16 <main+0x16>
+  1f:   c7 45 f8 00 00 00 00    movl   $0x0,-0x8(%rbp)
+  26:   eb 21                   jmp    49 <main+0x49>
+  28:   c7 45 f4 00 00 00 00    movl   $0x0,-0xc(%rbp)
+  2f:   eb 0e                   jmp    3f <main+0x3f>
+  31:   8b 45 f8                mov    -0x8(%rbp),%eax
+  34:   0f af 45 f4             imul   -0xc(%rbp),%eax
+  38:   01 45 fc                add    %eax,-0x4(%rbp)
+  3b:   83 45 f4 01             addl   $0x1,-0xc(%rbp)
+  3f:   83 7d f4 31             cmpl   $0x31,-0xc(%rbp)
+  43:   7e ec                   jle    31 <main+0x31>
+  45:   83 45 f8 01             addl   $0x1,-0x8(%rbp)
+  49:   83 7d f8 18             cmpl   $0x18,-0x8(%rbp)
+  4d:   7e d9                   jle    28 <main+0x28>
+  4f:   b8 00 00 00 00          mov    $0x0,%eax
+  54:   48 83 c4 30             add    $0x30,%rsp
+  58:   5d                      pop    %rbp
+  59:   c3                      retq
+  5a:   90                      nop
+  5b:   90                      nop
+  5c:   90                      nop
+  5d:   90                      nop
+  5e:   90                      nop
+  5f:   90                      nop
+
+-----------------------------------------------------------------------------------------------------------
+
+A-4]
+
+A-4.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 50             sub    $0x50,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 d8 01 00 00 00    movl   $0x1,-0x28(%rbp)
+  14:   c7 45 dc 02 00 00 00    movl   $0x2,-0x24(%rbp)
+  1b:   c7 45 e0 03 00 00 00    movl   $0x3,-0x20(%rbp)
+  22:   c7 45 fc 00 00 00 00    movl   $0x0,-0x4(%rbp)
+  29:   eb 16                   jmp    41 <main+0x41>
+  2b:   8b 45 fc                mov    -0x4(%rbp),%eax
+  2e:   48 98                   cltq
+  30:   8b 54 85 d8             mov    -0x28(%rbp,%rax,4),%edx
+  34:   8b 45 fc                mov    -0x4(%rbp),%eax
+  37:   48 98                   cltq
+  39:   89 54 85 e4             mov    %edx,-0x1c(%rbp,%rax,4)
+  3d:   83 45 fc 01             addl   $0x1,-0x4(%rbp)
+  41:   83 7d fc 02             cmpl   $0x2,-0x4(%rbp)
+  45:   7e e4                   jle    2b <main+0x2b>
+  47:   48 8d 45 e4             lea    -0x1c(%rbp),%rax
+  4b:   48 89 45 f0             mov    %rax,-0x10(%rbp)
+  4f:   48 8b 45 f0             mov    -0x10(%rbp),%rax
+  53:   48 83 c0 08             add    $0x8,%rax
+  57:   c7 00 05 00 00 00       movl   $0x5,(%rax)
+  5d:   b8 00 00 00 00          mov    $0x0,%eax
+  62:   48 83 c4 50             add    $0x50,%rsp
+  66:   5d                      pop    %rbp
+  67:   c3                      retq
+  68:   90                      nop
+  69:   90                      nop
+  6a:   90                      nop
+  6b:   90                      nop
+  6c:   90                      nop
+  6d:   90                      nop
+  6e:   90                      nop
+  6f:   90                      nop
+
+------------------------------------------------------------------------------------------------------
+
+A-5]
+
+A-5.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 f4 0a 00 00 00    movl   $0xa,-0xc(%rbp)
+  14:   8b 45 f0                mov    -0x10(%rbp),%eax
+  17:   3b 45 f4                cmp    -0xc(%rbp),%eax
+  1a:   7e 10                   jle    2c <main+0x2c>
+  1c:   c7 45 fc 03 00 00 00    movl   $0x3,-0x4(%rbp)
+  23:   c7 45 f8 02 00 00 00    movl   $0x2,-0x8(%rbp)
+  2a:   eb 0e                   jmp    3a <main+0x3a>
+  2c:   c7 45 fc 02 00 00 00    movl   $0x2,-0x4(%rbp)
+  33:   c7 45 f8 03 00 00 00    movl   $0x3,-0x8(%rbp)
+  3a:   8b 55 fc                mov    -0x4(%rbp),%edx
+  3d:   8b 45 f8                mov    -0x8(%rbp),%eax
+  40:   01 d0                   add    %edx,%eax
+  42:   89 45 f0                mov    %eax,-0x10(%rbp)
+  45:   b8 00 00 00 00          mov    $0x0,%eax
+  4a:   48 83 c4 30             add    $0x30,%rsp
+  4e:   5d                      pop    %rbp
+  4f:   c3                      retq
+
+-----------------------------------------------------------------------------------------------------------
+
+B-1]
+
+
+B-1.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <AddTwo>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   89 4d 10                mov    %ecx,0x10(%rbp)
+   7:   83 45 10 02             addl   $0x2,0x10(%rbp)
+   b:   8b 45 10                mov    0x10(%rbp),%eax
+   e:   5d                      pop    %rbp
+   f:   c3                      retq
+
+0000000000000010 <main>:
+  10:   55                      push   %rbp
+  11:   48 89 e5                mov    %rsp,%rbp
+  14:   48 83 ec 30             sub    $0x30,%rsp
+  18:   e8 00 00 00 00          callq  1d <main+0xd>
+                        19: R_X86_64_PC32       __main
+  1d:   c7 45 fc 03 00 00 00    movl   $0x3,-0x4(%rbp)
+  24:   8b 45 fc                mov    -0x4(%rbp),%eax
+  27:   89 c1                   mov    %eax,%ecx
+  29:   e8 d2 ff ff ff          callq  0 <AddTwo>
+  2e:   89 45 fc                mov    %eax,-0x4(%rbp)
+  31:   8b 45 fc                mov    -0x4(%rbp),%eax
+  34:   48 83 c4 30             add    $0x30,%rsp
+  38:   5d                      pop    %rbp
+  39:   c3                      retq
+  3a:   90                      nop
+  3b:   90                      nop
+  3c:   90                      nop
+  3d:   90                      nop
+  3e:   90                      nop
+  3f:   90                      nop
+
+-------------------------------------------------------------------------------------------------------
+
+B-2]
+
+B-2.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 f8 0a 00 00 00    movl   $0xa,-0x8(%rbp)
+  14:   c7 45 fc 00 00 00 00    movl   $0x0,-0x4(%rbp)
+  1b:   eb 10                   jmp    2d <main+0x2d>
+  1d:   48 8d 05 00 00 00 00    lea    0x0(%rip),%rax        # 24 <main+0x24>
+                        20: R_X86_64_PC32       N-0x4
+  24:   8b 00                   mov    (%rax),%eax
+  26:   01 45 f8                add    %eax,-0x8(%rbp)
+  29:   83 45 fc 01             addl   $0x1,-0x4(%rbp)
+  2d:   83 7d fc 03             cmpl   $0x3,-0x4(%rbp)
+  31:   7e ea                   jle    1d <main+0x1d>
+  33:   8b 45 f8                mov    -0x8(%rbp),%eax
+  36:   48 83 c4 30             add    $0x30,%rsp
+  3a:   5d                      pop    %rbp
+  3b:   c3                      retq
+  3c:   90                      nop
+  3d:   90                      nop
+  3e:   90                      nop
+  3f:   90                      nop
+
+-----------------------------------------------------------------------------------------------------------
+
+B-3]
+
+B-3.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 fc 04 00 00 00    movl   $0x4,-0x4(%rbp)
+  14:   eb 13                   jmp    29 <main+0x29>
+  16:   83 7d fc 03             cmpl   $0x3,-0x4(%rbp)
+  1a:   7f 06                   jg     22 <main+0x22>
+  1c:   83 45 f8 02             addl   $0x2,-0x8(%rbp)
+  20:   eb 03                   jmp    25 <main+0x25>
+  22:   d1 65 f8                shll   -0x8(%rbp)
+  25:   83 45 fc 01             addl   $0x1,-0x4(%rbp)
+  29:   83 7d fc 63             cmpl   $0x63,-0x4(%rbp)
+  2d:   7e e7                   jle    16 <main+0x16>
+  2f:   8b 55 f8                mov    -0x8(%rbp),%edx
+  32:   8b 45 fc                mov    -0x4(%rbp),%eax
+  35:   41 89 d0                mov    %edx,%r8d
+  38:   89 c2                   mov    %eax,%edx
+  3a:   48 8d 0d 00 00 00 00    lea    0x0(%rip),%rcx        # 41 <main+0x41>
+                        3d: R_X86_64_PC32       .rdata
+  41:   e8 00 00 00 00          callq  46 <main+0x46>
+                        42: R_X86_64_PC32       printf
+  46:   b8 00 00 00 00          mov    $0x0,%eax
+  4b:   48 83 c4 30             add    $0x30,%rsp
+  4f:   5d                      pop    %rbp
+  50:   c3                      retq
+  51:   90                      nop
+  52:   90                      nop
+  53:   90                      nop
+  54:   90                      nop
+  55:   90                      nop
+  56:   90                      nop
+  57:   90                      nop
+  58:   90                      nop
+  59:   90                      nop
+  5a:   90                      nop
+  5b:   90                      nop
+  5c:   90                      nop
+  5d:   90                      nop
+  5e:   90                      nop
+  5f:   90                      nop
+
+---------------------------------------------------------------------------------------------------------------
+
+B-4]
+
+B-4.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   8b 55 fc                mov    -0x4(%rbp),%edx
+  10:   8b 45 f8                mov    -0x8(%rbp),%eax
+  13:   01 c2                   add    %eax,%edx
+  15:   8b 45 f4                mov    -0xc(%rbp),%eax
+  18:   8d 0c 02                lea    (%rdx,%rax,1),%ecx
+  1b:   8b 55 f8                mov    -0x8(%rbp),%edx
+  1e:   8b 45 fc                mov    -0x4(%rbp),%eax
+  21:   01 d0                   add    %edx,%eax
+  23:   0f af c1                imul   %ecx,%eax
+  26:   89 45 f4                mov    %eax,-0xc(%rbp)
+  29:   8b 45 f4                mov    -0xc(%rbp),%eax
+  2c:   48 83 c4 30             add    $0x30,%rsp
+  30:   5d                      pop    %rbp
+  31:   c3                      retq
+  32:   90                      nop
+  33:   90                      nop
+  34:   90                      nop
+  35:   90                      nop
+  36:   90                      nop
+  37:   90                      nop
+  38:   90                      nop
+  39:   90                      nop
+  3a:   90                      nop
+  3b:   90                      nop
+  3c:   90                      nop
+  3d:   90                      nop
+  3e:   90                      nop
+  3f:   90                      nop
+
+-------------------------------------------------------------------------------------------------------
