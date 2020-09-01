@@ -1,0 +1,77 @@
+
+------------------
+B-2 Loop Unrolling
+------------------
+
+	--------						-------------			
+	  ssa							   cunroll
+	--------                                                -------------        
+
+main ()                                                    |main ()
+{                                                          |{
+  int a;                                                   |  int a;
+  int i;                                                   |  int i;
+  int N.0_1;                                               |  int N.0_9;
+  int _6;                                                  |
+                                                           |  <bb 2> [local count: 214748369]:
+  <bb 2> :                                                 |  N.0_9 = N;
+  a_4 = 10;                                                |  a_10 = N.0_9 + 10;
+  i_5 = 0;                                                 |  a_15 = N.0_9 + a_10;
+  goto <bb 4>; [INV]                                       |  a_20 = N.0_9 + a_15;
+                                                           |  a_25 = N.0_9 + a_20;
+  <bb 3> :                                                 |  return a_25;
+  N.0_1 = N;                                               |
+  a_8 = a_3 + N.0_1;                                       |}
+  i_9 = i_2 + 1;                                           |
+                                                           |
+  <bb 4> :                                                 |~
+  # i_2 = PHI <i_5(2), i_9(3)>                             |~
+  # a_3 = PHI <a_4(2), a_8(3)>                             |~
+  if (i_2 <= 3)                                            |~
+    goto <bb 3>; [INV]                                     |~
+  else                                                     |~
+    goto <bb 5>; [INV]                                     |~
+                                                           |~
+  <bb 5> :                                                 |~
+  _6 = a_3;                                                |~
+  return _6;                                               |~
+                                                           |~
+}                                                          |~
+         
+--------------------------------------------------------------------------------------------------------------
+
+Solutions:
+
+
+        1   The loop will be unrolled and constant propogation will allow GCC to
+            compute  the final  value of  `a'. Hence  the loop  will be  removed
+            entirely.
+    
+main ()                                 |main ()
+{                                       |{
+  int a;                                |<bb 2>:
+  int i;                                |  return 14;
+  int D.1593;                           |
+                                        |}
+<bb 2>:                                 |
+  a_3 = 10;                             |
+  i_4 = 0;                              |                                      
+  goto <bb 4>;                          |                                      
+                                        |                                      
+<bb 3>:                                 |                                      
+  a_5 = a_2 + 1;                        |                                      
+  i_6 = i_1 + 1;                        |                                      
+                                        |                                      
+<bb 4>:                                 |                                      
+  # i_1 = PHI <i_4(2), i_6(3)>          |                                      
+  # a_2 = PHI <a_3(2), a_5(3)>          |                                      
+  if (i_1 <= 3)                         |                                      
+    goto <bb 3>;                        |                                      
+  else                                  |                                      
+    goto <bb 5>;                        |                                      
+                                        |                                      
+<bb 5>:                                 |                                      
+  D.1593_7 = a_2;                       |                                     
+  return D.1593_7;                      |                                     
+                                        |                                      
+}                                       |                  
