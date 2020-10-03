@@ -1,0 +1,49 @@
+---------------------
+B-1 Function Inlining
+---------------------
+
+Gimple Output einline:
+
+Function AddTwo()
+
+AddTwo (int a)
+{
+  int _3;
+
+  <bb 2> :
+  a_2 = a_1(D) + 2;
+  _3 = a_2;
+  return _3;
+
+}
+
+Function main()
+
+main ()
+{
+  int D.1922;
+  int a;
+  int x;
+  int _5;
+
+  <bb 2> :
+  x_1 = 3;
+  a_3 = x_1 + 2;
+  _6 = a_3;
+  x_4 = _6;
+  _5 = x_4;
+  return _5;
+
+}
+----------------------------------------------------------------------------------
+Solutions:
+
+	1   The function body exists because it may be called from another file.
+            The compiler cannot know about this before link time.
+
+        2   If the function was declared with the "static" keyword (which, in C,
+            is something  like "private  to this file  only") then  the function
+            body will disappear if there is no caller within the file.
+
+    
+
