@@ -1,0 +1,59 @@
+
+-----------------------
+A-4 Arrays and Pointers
+-----------------------
+Gimple Output:
+
+main ()
+{
+  int * p;
+  int i;
+  int b[3];
+  int a[3];
+  int D.1917;
+
+  <bb 2> :
+  b[0] = 1;
+  b[1] = 2;
+  b[2] = 3;
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  _1 = b[i];
+  a[i] = _1;
+  i = i + 1;
+
+  <bb 4> :
+  if (i <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  p = &a;
+  _2 = p + 8;
+  *_2 = 5;
+  a = {CLOBBER};
+  b = {CLOBBER};
+  D.1917 = 0;
+
+  <bb 6> :
+<L3>:
+  return D.1917;
+
+}
+
+
+Solutions :
+
+	1. Arrays declared in a single statement with no initialisation and explicit
+	   size. Initialisation takes place one element per statement on scope entry.
+
+	2. Presumably because like in many architectures, only one memory operation per
+	   instruction is permitted. This probably simplifies many things.
+
+	3. To mark the arrays as invalid at scope exit - probably to simplify analysis
+	   and permit reuse of stack slots, etc.CLOBBER statements are used for 
+	   address-escaped variables. It is an annotation to signify that the 
+	   scope of this address-escaped variable has ended.
